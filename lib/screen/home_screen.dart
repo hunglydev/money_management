@@ -1,10 +1,10 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:money_management/constant/constant.dart';
 import 'package:money_management/constant/theme.dart';
 
 class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
+
   @override
   State createState() {
     return HomeScreenState();
@@ -68,7 +68,7 @@ class HomeScreenState extends State<HomeScreen> {
           width: MediaQuery.of(context).size.width,
           height: 750,
           color: Colors.white,
-          child: Column(
+          child: const Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Icon(
