@@ -16,53 +16,64 @@ class HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SizedBox(
-          height: MediaQuery.of(context).padding.top,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            IconButton(onPressed: () {}, icon: const Icon(Icons.search)),
-            Text(
-              "Sổ thu chi",
-              style: lightThemeData.textTheme.headlineMedium,
-            ),
-            IconButton(
-                onPressed: () {},
-                icon: const Icon(Icons.calendar_month_outlined))
-          ],
-        ),
         Container(
-          padding: const EdgeInsets.symmetric(
-              horizontal: AppConst.paddingHorizontal),
-          child: const Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                  colors: [AppColor.primaryColor, Colors.white],
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter)),
+          child: Column(
             children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [Text("2024"), Text("Thg 4 ")],
+              SizedBox(
+                height: MediaQuery.of(context).padding.top,
               ),
-              Text(
-                "|",
-                style: TextStyle(fontSize: 25),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  IconButton(onPressed: () {}, icon: const Icon(Icons.search)),
+                  Text(
+                    "Sổ thu chi",
+                    style: lightThemeData.textTheme.headlineMedium,
+                  ),
+                  IconButton(
+                      onPressed: () {},
+                      icon: const Icon(Icons.calendar_month_outlined))
+                ],
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [Text("Chi phí"), Text("0")],
+              Container(
+                padding: const EdgeInsets.symmetric(
+                    horizontal: AppConst.paddingHorizontal),
+                child: const Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [Text("2024"), Text("Thg 4 ")],
+                    ),
+                    Text(
+                      "|",
+                      style: TextStyle(fontSize: 25),
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [Text("Chi phí"), Text("0")],
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [Text("Thu nhập"), Text("0")],
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [Text("Số dư"), Text("0")],
+                    ),
+                  ],
+                ),
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [Text("Thu nhập"), Text("0")],
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [Text("Số dư"), Text("0")],
+              const SizedBox(
+                height: 15,
               ),
             ],
           ),
-        ),
-        const SizedBox(
-          height: 15,
         ),
         Container(
           width: MediaQuery.of(context).size.width,
