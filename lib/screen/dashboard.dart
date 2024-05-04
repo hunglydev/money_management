@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:money_management/constant/constant.dart';
+import 'package:money_management/screen/add_screen.dart';
 import 'package:money_management/screen/home_screen.dart';
 import 'package:money_management/widget/bottom_nav_item.dart';
 
@@ -24,7 +25,6 @@ class DashboardState extends State<Dashboard> {
   }
 
   final List<Widget> _screen = [
-    const HomeScreen(),
     const HomeScreen(),
     const HomeScreen(),
     const HomeScreen(),
@@ -53,12 +53,12 @@ class DashboardState extends State<Dashboard> {
                 iconData: Icons.insert_drive_file_outlined,
                 title: "Báo cáo",
                 onTap: () => _setPage(3),
-                isSelected: _pageIndex == 3),
+                isSelected: _pageIndex == 2),
             BottomNavItem(
                 iconData: Icons.person_2_outlined,
                 title: "Tôi",
                 onTap: () => _setPage(4),
-                isSelected: _pageIndex == 4),
+                isSelected: _pageIndex == 3),
           ],
         ),
       ),
@@ -69,7 +69,14 @@ class DashboardState extends State<Dashboard> {
         child: FloatingActionButton(
           shape: const CircleBorder(),
           backgroundColor: AppColor.primaryColor,
-          onPressed: () => _setPage(2),
+          onPressed: () {
+            showModalBottomSheet(
+                useSafeArea: true,
+                context: context,
+                isScrollControlled: true,
+                builder: (context) =>
+                    const SingleChildScrollView(child: ShowBottomSheetAdd()));
+          },
           child: const Icon(Icons.add),
         ),
       ),
