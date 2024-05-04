@@ -77,7 +77,7 @@ class HomeScreenState extends State<HomeScreen> {
         ),
         Container(
           width: MediaQuery.of(context).size.width,
-          height: 750,
+          height: 700,
           color: Colors.white,
           child: const Column(
             mainAxisAlignment: MainAxisAlignment.center,
