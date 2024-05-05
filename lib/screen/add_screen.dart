@@ -1,6 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:money_management/constant/constant.dart';
 import 'package:money_management/constant/theme.dart';
+import 'package:money_management/sub_screen/item_add_cost_screen.dart';
 import 'package:money_management/widget/item_add.dart';
 
 class ShowBottomSheetAdd extends StatefulWidget {
@@ -14,41 +17,10 @@ class ShowBottomSheetAdd extends StatefulWidget {
 
 class ShowBottomSheetStateAdd extends State<ShowBottomSheetAdd> {
   int _index = 0;
-  final List<String> _title = [
-    "Mua sắm",
-    "Đồ ăn",
-    "Điện thoại",
-    "Giải trí",
-    "Giáo dục",
-    "Làm đẹp",
-    "Thể thao",
-    "Xã hội",
-    "Giao thông",
-    "Nhà ở",
-    "Quần áo",
-    "Điện nước",
-    "Sức khỏe",
-    "Du lịch",
-    "Thú cưng",
-    "Quyên góp"
-  ];
-  final List<IconData> _iconData = [
-    Icons.shopping_cart_outlined,
-    Icons.food_bank_outlined,
-    Icons.phone_android,
-    Icons.gamepad_outlined,
-    Icons.school_outlined,
-    Icons.school_outlined,
-    Icons.sports_baseball_outlined,
-    Icons.sports_baseball_outlined,
-    Icons.sports_baseball_outlined,
-    Icons.sports_baseball_outlined,
-    Icons.sports_baseball_outlined,
-    Icons.sports_baseball_outlined,
-    Icons.sports_baseball_outlined,
-    Icons.sports_baseball_outlined,
-    Icons.sports_baseball_outlined,
-    Icons.sports_baseball_outlined,
+  final List<Widget> _subScreen = [
+    const ItemAddCostScreen(),
+    const ItemAddCostScreen(),
+    const ItemAddCostScreen(),
   ];
   @override
   void initState() {
@@ -197,18 +169,7 @@ class ShowBottomSheetStateAdd extends State<ShowBottomSheetAdd> {
           const SizedBox(
             height: 30,
           ),
-          SizedBox(
-            height: 500,
-            child: GridView.builder(
-                itemCount: _iconData.length,
-                padding: EdgeInsets.zero,
-                physics: const NeverScrollableScrollPhysics(),
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    mainAxisSpacing: 10, crossAxisCount: 4),
-                itemBuilder: (context, index) {
-                  return itemAdd(_iconData[index], _title[index]);
-                }),
-          )
+          _subScreen[_index],
         ],
       ),
     );
