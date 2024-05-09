@@ -52,12 +52,12 @@ class DashboardState extends State<Dashboard> {
             BottomNavItem(
                 iconData: Icons.insert_drive_file_outlined,
                 title: "Báo cáo",
-                onTap: () => _setPage(3),
+                onTap: () => _setPage(2),
                 isSelected: _pageIndex == 2),
             BottomNavItem(
                 iconData: Icons.person_2_outlined,
                 title: "Tôi",
-                onTap: () => _setPage(4),
+                onTap: () => _setPage(3),
                 isSelected: _pageIndex == 3),
           ],
         ),
