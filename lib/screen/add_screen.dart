@@ -1,10 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:money_management/constant/constant.dart';
 import 'package:money_management/constant/theme.dart';
 import 'package:money_management/sub_screen/item_add_cost_screen.dart';
-import 'package:money_management/widget/item_add.dart';
+import 'package:money_management/sub_screen/item_add_income_screen.dart';
 
 class ShowBottomSheetAdd extends StatefulWidget {
   const ShowBottomSheetAdd({super.key});
@@ -19,7 +17,7 @@ class ShowBottomSheetStateAdd extends State<ShowBottomSheetAdd> {
   int _index = 0;
   final List<Widget> _subScreen = [
     const ItemAddCostScreen(),
-    const ItemAddCostScreen(),
+    const ItemAddIncomeScreen(),
     const ItemAddCostScreen(),
   ];
   @override
