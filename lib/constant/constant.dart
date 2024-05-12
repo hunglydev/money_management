@@ -11,3 +11,19 @@ class AppConst {
   static const double paddingHorizontal = 20;
   static const double border16 = 16;
 }
+
+final fontKeyboardButton = TextStyle(
+  color: Colors.black,
+  fontSize: 17,
+  fontWeight: FontWeight.w500,
+);
+final fontKeyboardInput = TextStyle(
+  color: Colors.black,
+  fontSize: 20,
+  fontWeight: FontWeight.w500,
+);
+final titleButtonTextWithWhiteColor = TextStyle(
+  color: Colors.white,
+  fontSize: 25,
+  fontWeight: FontWeight.bold,
+);

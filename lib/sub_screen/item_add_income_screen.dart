@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:money_management/widget/item_add.dart';
 
+import 'custom_keyboard.dart';
+
 class ItemAddIncomeScreen extends StatefulWidget {
   const ItemAddIncomeScreen({super.key});
 
@@ -49,11 +51,12 @@ class ItemAddIncomeScreenState extends State<ItemAddIncomeScreen> {
             return InkWell(
               onTap: () {
                 setState(() {
-                  if (_index != index) {
-                    _index = index;
-                  } else {
-                    _index = -1;
-                  }
+                  _index = index;
+                  showModalBottomSheet(
+                      isScrollControlled: false,
+                      useSafeArea: true,
+                      context: context,
+                      builder: (context) => CustomKeyboard());
                 });
               },
               child:

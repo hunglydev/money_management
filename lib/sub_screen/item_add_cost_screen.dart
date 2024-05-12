@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:money_management/sub_screen/custom_keyboard.dart';
 
 import '../constant/constant.dart';
 import '../widget/item_add.dart';
@@ -73,11 +74,12 @@ class ItemAddCostScreenState extends State<ItemAddCostScreen> {
             return InkWell(
                 onTap: () {
                   setState(() {
-                    if (_index != index) {
-                      _index = index;
-                    } else {
-                      _index = -1;
-                    }
+                    _index = index;
+                    showModalBottomSheet(
+                        isScrollControlled: false,
+                        useSafeArea: true,
+                        context: context,
+                        builder: (context) => CustomKeyboard());
                   });
                 },
                 child:
