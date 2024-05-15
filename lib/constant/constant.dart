@@ -25,5 +25,7 @@ final fontKeyboardInput = TextStyle(
 final titleButtonTextWithWhiteColor = TextStyle(
   color: Colors.white,
   fontSize: 25,
-  fontWeight: FontWeight.bold,
+  fontWeight: FontWeight.w600,
 );
+
+final titleMedium = TextStyle(color: Colors.black, fontSize: 20);
