@@ -12,20 +12,31 @@ class AppConst {
   static const double border16 = 16;
 }
 
-final fontKeyboardButton = TextStyle(
+const fontKeyboardButton = TextStyle(
   color: Colors.black,
   fontSize: 17,
   fontWeight: FontWeight.w500,
 );
-final fontKeyboardInput = TextStyle(
+const fontKeyboardInput = TextStyle(
   color: Colors.black,
   fontSize: 20,
   fontWeight: FontWeight.w500,
 );
-final titleButtonTextWithWhiteColor = TextStyle(
+const titleButtonTextWithWhiteColor = TextStyle(
   color: Colors.white,
   fontSize: 25,
   fontWeight: FontWeight.w600,
 );
 
-final titleMedium = TextStyle(color: Colors.black, fontSize: 20);
+const titleMedium = TextStyle(
+  color: Colors.black,
+  fontSize: 20,
+);
+const titleSmall = TextStyle(
+  color: Colors.black,
+  fontSize: 18,
+);
+const titleSmallWithColor = TextStyle(
+  color: AppColor.primaryColor,
+  fontSize: 18,
+);

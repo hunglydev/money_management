@@ -16,6 +16,11 @@ class HomeScreenState extends State<HomeScreen> {
   int _selectedYear = DateTime.now().year;
 
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Column(
       children: [
@@ -50,7 +55,7 @@ class HomeScreenState extends State<HomeScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     InkWell(
-                      onTap: () => _selectMonth(),
+                      onTap: () => _selectYears(),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -110,83 +115,133 @@ class HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Future<void> _selectMonth() async {
+  Future<void> _selectYears() async {
+    int? selectYears;
     final List<int> years =
         List<int>.generate(50, (index) => DateTime.now().year - 25 + index);
-
-    int tempSelectedMonth = _selectedMonth;
-    int tempSelectedYear = _selectedYear;
-    bool selectingYear = true;
-    await showDialog(
+    showDialog(
       context: context,
-      builder: (BuildContext context) {
-        return StatefulBuilder(
-          builder: (context, setState) {
-            return AlertDialog(
-              title: selectingYear
-                  ? const Text('Chọn năm')
-                  : Text('Chọn tháng - $tempSelectedYear'),
-              content: selectingYear
-                  ? SingleChildScrollView(
-                      child: Column(
-                        children: years.map((year) {
-                          return ListTile(
-                            title: Text(year.toString()),
-                            onTap: () {
-                              setState(() {
-                                tempSelectedYear = year;
-                                selectingYear = false;
-                              });
-                            },
-                          );
-                        }).toList(),
-                      ),
-                    )
-                  : SingleChildScrollView(
-                      child: Column(
-                        children: List.generate(12, (index) {
-                          int month = index + 1;
-                          return ListTile(
-                            title: Text('Tháng $month'),
-                            onTap: () {
-                              setState(() {
-                                tempSelectedMonth = month;
-                              });
-                              Navigator.of(context).pop();
-                            },
-                          );
-                        }),
-                      ),
-                    ),
-              actions: [
-                TextButton(
-                  onPressed: () {
-                    if (selectingYear) {
-                      Navigator.of(context).pop();
-                    } else {
-                      setState(() {
-                        selectingYear = true;
-                      });
-                    }
-                  },
-                  child: Text(selectingYear ? 'Hủy' : 'Trở lại'),
-                ),
-                if (!selectingYear)
-                  TextButton(
-                    onPressed: () {
-                      setState(() {
-                        _selectedMonth = tempSelectedMonth;
-                        _selectedYear = tempSelectedYear;
-                      });
-                      Navigator.of(context).pop();
-                    },
-                    child: const Text('OK'),
+      builder: (context) => AlertDialog(
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: const Text(
+              "Hủy",
+              style: titleSmallWithColor,
+            ),
+          ),
+        ],
+        title: const Text(
+          "Chọn năm",
+          style: titleMedium,
+        ),
+        content: SizedBox(
+          width: 300,
+          height: 200,
+          child: GridView.builder(
+            itemCount: years.length,
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                mainAxisSpacing: 10,
+                crossAxisCount: 4,
+                crossAxisSpacing: 10,
+                childAspectRatio: 1),
+            itemBuilder: (context, index) {
+              return InkWell(
+                onTap: () {
+                  setState(() {
+                    _selectedYear = years[index];
+                    selectYears = years[index];
+                  });
+                  Navigator.pop(context);
+                },
+                child: Container(
+                  alignment: Alignment.center,
+                  width: 80,
+                  height: 80,
+                  decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: years[index] == _selectedYear
+                          ? AppColor.primaryColor
+                          : Colors.transparent),
+                  child: Text(
+                    years[index].toString(),
+                    style: titleSmall.copyWith(
+                        color: years[index] == _selectedYear
+                            ? AppColor.white
+                            : Colors.black),
                   ),
-              ],
-            );
-          },
-        );
-      },
+                ),
+              );
+            },
+          ),
+        ),
+      ),
+    );
+    if (selectYears != 0) {
+      await _selectMonths();
+    }
+  }
+
+  Future<void> _selectMonths() async {
+    final List<int> months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text(
+              "Hủy",
+              style: titleSmallWithColor,
+            ),
+          ),
+        ],
+        title: const Text(
+          "Chọn tháng",
+          style: titleMedium,
+        ),
+        content: SizedBox(
+          width: 300,
+          height: 200,
+          child: GridView.builder(
+            itemCount: months.length,
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                mainAxisSpacing: 10,
+                crossAxisCount: 4,
+                crossAxisSpacing: 10,
+                childAspectRatio: 1),
+            itemBuilder: (context, index) {
+              return InkWell(
+                onTap: () {
+                  setState(() {
+                    _selectedMonth = months[index];
+                  });
+                  Navigator.pop(context);
+                },
+                child: Container(
+                  alignment: Alignment.center,
+                  width: 80,
+                  height: 80,
+                  decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: months[index] == _selectedMonth
+                          ? AppColor.primaryColor
+                          : Colors.transparent),
+                  child: Text(
+                    "Thg ${months[index]}",
+                    style: titleSmall.copyWith(
+                        color: months[index] == _selectedMonth
+                            ? AppColor.white
+                            : Colors.black),
+                  ),
+                ),
+              );
+            },
+          ),
+        ),
+      ),
     );
   }
 }
