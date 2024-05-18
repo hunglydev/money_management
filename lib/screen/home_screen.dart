@@ -161,16 +161,18 @@ class HomeScreenState extends State<HomeScreen> {
                   width: 80,
                   height: 80,
                   decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: years[index] == _selectedYear
-                          ? AppColor.primaryColor
-                          : Colors.transparent),
+                    shape: BoxShape.circle,
+                    color: years[index] == _selectedYear
+                        ? AppColor.primaryColor
+                        : Colors.transparent,
+                  ),
                   child: Text(
                     years[index].toString(),
                     style: titleSmall.copyWith(
-                        color: years[index] == _selectedYear
-                            ? AppColor.white
-                            : Colors.black),
+                      color: years[index] == _selectedYear
+                          ? AppColor.white
+                          : Colors.black,
+                    ),
                   ),
                 ),
               );
@@ -208,10 +210,11 @@ class HomeScreenState extends State<HomeScreen> {
           child: GridView.builder(
             itemCount: months.length,
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                mainAxisSpacing: 10,
-                crossAxisCount: 4,
-                crossAxisSpacing: 10,
-                childAspectRatio: 1),
+              mainAxisSpacing: 10,
+              crossAxisCount: 4,
+              crossAxisSpacing: 10,
+              childAspectRatio: 1,
+            ),
             itemBuilder: (context, index) {
               return InkWell(
                 onTap: () {
@@ -225,16 +228,18 @@ class HomeScreenState extends State<HomeScreen> {
                   width: 80,
                   height: 80,
                   decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: months[index] == _selectedMonth
-                          ? AppColor.primaryColor
-                          : Colors.transparent),
+                    shape: BoxShape.circle,
+                    color: months[index] == _selectedMonth
+                        ? AppColor.primaryColor
+                        : Colors.transparent,
+                  ),
                   child: Text(
                     "Thg ${months[index]}",
                     style: titleSmall.copyWith(
-                        color: months[index] == _selectedMonth
-                            ? AppColor.white
-                            : Colors.black),
+                      color: months[index] == _selectedMonth
+                          ? AppColor.white
+                          : Colors.black,
+                    ),
                   ),
                 ),
               );
