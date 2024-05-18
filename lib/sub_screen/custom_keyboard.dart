@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:money_management/constant/constant.dart';
+import 'package:money_management/constant/theme.dart';
 import 'package:money_management/widget/keyboard_button.dart';
 
 class CustomKeyboard extends StatefulWidget {
+  const CustomKeyboard({super.key});
+
   @override
   State createState() {
     return CustomKeyboardState();
@@ -12,27 +15,56 @@ class CustomKeyboard extends StatefulWidget {
 class CustomKeyboardState extends State<CustomKeyboard> {
   final TextEditingController _noteController = TextEditingController();
   final TextEditingController _total = TextEditingController();
+  DateTime selectedDateTime = DateTime.now();
   int currentNumber = 0;
   int previousNumber = 0;
   String? operation;
-
   @override
   void initState() {
     super.initState();
     _total.text = "";
   }
 
+  void _showDatePicker() {
+    showDatePicker(
+      context: context,
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2030),
+      initialDate: selectedDateTime,
+      builder: (context, child) {
+        return Theme(
+            data: lightThemeData
+            //     .copyWith(
+            //   primaryColor: AppColor.primaryColor,
+            //   colorScheme: ColorScheme.light(primary: AppColor.primaryColor),
+            // ),
+            ,
+            child: child!);
+      },
+    ).then((value) => {
+          setState(() {
+            selectedDateTime = value!;
+          })
+        });
+  }
+
+  bool _compareDates(DateTime date1, DateTime date2) {
+    return date1.year == date2.year &&
+        date1.month == date2.month &&
+        date1.day == date2.day;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(
+      padding: const EdgeInsets.symmetric(
           horizontal: AppConst.paddingHorizontal, vertical: 10),
       child: Column(
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Icon(Icons.attach_money_rounded),
+              const Icon(Icons.attach_money_rounded),
               Text(
                 _total.text != "" ? _total.text : "0",
                 style: fontKeyboardInput,
@@ -51,7 +83,7 @@ class CustomKeyboardState extends State<CustomKeyboard> {
               controller: _noteController,
               keyboardType: TextInputType.text,
               cursorColor: AppColor.primaryColor,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 hintText: "Nhập vào ghi chú",
                 border: OutlineInputBorder(borderSide: BorderSide.none),
               ),
@@ -63,22 +95,29 @@ class CustomKeyboardState extends State<CustomKeyboard> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
+              const Text(
                 "Chọn ngày: ",
                 style: fontKeyboardInput,
               ),
-              Container(
-                width: 150,
-                height: 40,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12),
-                    color: AppColor.backgroundColor),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Icon(Icons.calendar_month_outlined),
-                    Text("Hôm nay")
-                  ],
+              InkWell(
+                onTap: () {
+                  _showDatePicker();
+                },
+                child: Container(
+                  width: 150,
+                  height: 40,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      color: AppColor.backgroundColor),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      const Icon(Icons.calendar_month_outlined),
+                      Text(_compareDates(selectedDateTime, DateTime.now())
+                          ? "Hôm nay"
+                          : "${selectedDateTime.day} thg ${selectedDateTime.month} \n ${selectedDateTime.year} ")
+                    ],
+                  ),
                 ),
               ),
               Container(
@@ -98,7 +137,7 @@ class CustomKeyboardState extends State<CustomKeyboard> {
               customKeyboard(() => _onOperationTap("+"), "+"),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 5,
           ),
           Row(
@@ -110,7 +149,7 @@ class CustomKeyboardState extends State<CustomKeyboard> {
               customKeyboard(() => _onOperationTap("-"), "-"),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 5,
           ),
           Row(
@@ -122,7 +161,7 @@ class CustomKeyboardState extends State<CustomKeyboard> {
               customKeyboard(() => _onOperationTap("*"), "*"),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 5,
           ),
           Row(
@@ -143,7 +182,7 @@ class CustomKeyboardState extends State<CustomKeyboard> {
                   width: 100,
                   height: 40,
                   color: AppColor.backgroundColor,
-                  child: Icon(
+                  child: const Icon(
                     Icons.cancel_presentation_rounded,
                     size: 20,
                   ),
@@ -153,7 +192,7 @@ class CustomKeyboardState extends State<CustomKeyboard> {
               customKeyboard(() => _onOperationTap("/"), "/"),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 16,
           ),
           InkWell(
@@ -166,7 +205,7 @@ class CustomKeyboardState extends State<CustomKeyboard> {
                 borderRadius: BorderRadius.circular(16),
                 color: AppColor.primaryColor,
               ),
-              child: Text(
+              child: const Text(
                 "Nhập",
                 style: titleButtonTextWithWhiteColor,
               ),
