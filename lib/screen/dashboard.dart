@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:money_management/constant/constant.dart';
 import 'package:money_management/screen/add_screen.dart';
 import 'package:money_management/screen/home_screen.dart';
+import 'package:money_management/screen/report_screen.dart';
 import 'package:money_management/widget/bottom_nav_item.dart';
 
 class Dashboard extends StatefulWidget {
@@ -27,7 +28,7 @@ class DashboardState extends State<Dashboard> {
   final List<Widget> _screen = [
     const HomeScreen(),
     const HomeScreen(),
-    const HomeScreen(),
+    ReportScreen(),
     const HomeScreen()
   ];
   @override
